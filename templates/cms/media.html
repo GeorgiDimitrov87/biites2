@@ -139,7 +139,7 @@ function log(name, data) {
     console.log('log:', name, data, json, currentTime);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/register", true);
+    xhr.open("POST", "/analytics", true);
     // xhr.open("POST", "https://videojs.free.beeceptor.com/my/api/path", true);
     xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -158,7 +158,7 @@ function initEventTracking() {
     const canvas = document.querySelector('.video-js.vjs-mediacms video');
     if (!canvas) {
         console.log('canvas', canvas);
-        setTimeout(initEventTracking, 200);
+        setTimeout(initEventTracking, 500);
         return;
     }
     var player = window.player = videojs(canvas);
