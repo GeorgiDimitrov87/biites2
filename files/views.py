@@ -74,6 +74,13 @@ def about(request):
     context = {}
     return render(request, "cms/about.html", context)
 
+def analytics(request):
+    """Analytics view"""
+    # print('hello###########')
+    # print(request.body)
+    # print(request.text)
+    context = {}
+    return render(request, "cms/about.html", context)
 
 @login_required
 def add_subtitle(request):
