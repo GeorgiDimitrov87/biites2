@@ -1,5 +1,8 @@
+import json
 from datetime import datetime, timedelta
 
+import boto3
+import requests
 from celery.task.control import revoke
 from django.conf import settings
 from django.contrib import messages
@@ -65,16 +68,7 @@ from .serializers import (
 from .stop_words import STOP_WORDS
 from .tasks import save_user_action
 
-import json
-import boto3
-import os
-import requests
-import logging
-
-firehose = boto3.client('firehose',
-                        aws_access_key_id = "",
-                        aws_secret_access_key = "", 
-                        region_name='eu-central-1')
+firehose = boto3.client('firehose', aws_access_key_id="AKIA2BSWVPNXVBZHEBVJ", aws_secret_access_key="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", region_name='eu-central-1')
 
 VALID_USER_ACTIONS = [action for action, name in USER_MEDIA_ACTIONS]
 
@@ -85,21 +79,26 @@ def about(request):
     context = {}
     return render(request, "cms/about.html", context)
 
+
 def termsconditions(request):
     context = {}
     return render(request, "cms/termsconditions.html", context)
+
 
 def ethicalguidelines(request):
     context = {}
     return render(request, "cms/ethicalguidelines.html", context)
 
+
 def press(request):
     context = {}
     return render(request, "cms/press.html", context)
 
+
 def cookiesprivacy(request):
     context = {}
     return render(request, "cms/cookiesprivacy.html", context)
+
 
 def analytics(request):
     """Analytics view"""
@@ -116,28 +115,27 @@ def analytics(request):
     try:
         tracking['user_session'] = test_data['user_session']
     except Exception as ex:
-            print(ex)
-            pass
+        print(ex)
+        pass
     try:
         tracking['user_id'] = test_data['user_id']
     except Exception as ex:
-            print(ex)
-            pass
-    
+        print(ex)
+        pass
+
     try:
         last_data = json.dumps(tracking)
         print(last_data)
         last_data = last_data + ';'
-        res = firehose.put_record(
-        DeliveryStreamName="PUT-S3-B3",
-        Record = {'Data': last_data})
+        res = firehose.put_record(DeliveryStreamName="PUT-S3-B3", Record={'Data': last_data})
         print("Wrote to RecordId: {}".format(res['RecordId']))
     except Exception as ex:
-            print(ex)
-            pass
+        print(ex)
+        pass
 
     context = {}
     return render(request, "cms/media.html", context)
+
 
 @login_required
 def add_subtitle(request):
@@ -405,8 +403,8 @@ def view_media(request):
         result = json.loads(adr)
 
     except Exception as ex:
-            print(ex)
-            pass
+        print(ex)
+        pass
 
     try:
         test_data['time'] = dt_string
@@ -433,21 +431,19 @@ def view_media(request):
         test_data['last_url'] = last_url
 
     except Exception as ex:
-            print(ex)
-            pass  
+        print(ex)
+        pass
     print('part1###########', test_data)
 
     try:
         last_data = json.dumps(test_data)
         print(last_data)
         last_data = last_data + ';'
-        res = firehose.put_record(
-        DeliveryStreamName="PUT-S3-B3",
-        Record = {'Data': last_data})
+        res = firehose.put_record(DeliveryStreamName="PUT-S3-B3", Record={'Data': last_data})
         print("Wrote to RecordId: {}".format(res['RecordId']))
     except Exception as ex:
-            print(ex)
-            pass
+        print(ex)
+        pass
 
     save_user_action.delay(user_or_session, friendly_token=friendly_token, action="watch")
     context = {}
