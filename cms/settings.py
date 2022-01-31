@@ -6,7 +6,7 @@ DEBUG = False
 
 # PORTAL NAME, this is the portal title and
 # is also shown on several places as emails
-PORTAL_NAME = "MediaCMS"
+PORTAL_NAME = "Biites"
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Europe/London"
 
@@ -18,7 +18,7 @@ CAN_ADD_MEDIA = "all"
 PORTAL_WORKFLOW = "public"
 
 # valid values: 'light', 'dark'.
-DEFAULT_THEME = "light"
+DEFAULT_THEME = "dark"
 
 
 # These are passed on every request
@@ -159,7 +159,7 @@ FFMPEG_COMMAND = "ffmpeg"  # this is the path
 FFPROBE_COMMAND = "ffprobe"  # this is the path
 MP4HLS = "mp4hls"
 
-MASK_IPS_FOR_ACTIONS = True
+MASK_IPS_FOR_ACTIONS = False
 # how many seconds a process in running state without reporting progress is
 # considered as stale...unfortunately v9 seems to not include time
 # some times so raising this high

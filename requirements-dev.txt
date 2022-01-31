@@ -14,3 +14,9 @@ pytest-factoryboy
 Faker
 selenium
 webdriver-manager
+
+boto3
+pyyaml 
+ua-parser 
+user-agents
+django-user-agents

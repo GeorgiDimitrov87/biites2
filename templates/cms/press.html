@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block headtitle %}About - {{PORTAL_NAME}}{% endblock headtitle %}
+
+{% block headermeta %}
+
+<meta property="og:title" content="About - {{PORTAL_NAME}}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="">
+
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "{{PORTAL_NAME}}",
+                "item": {
+                    "@type": "WebPage",
+                    "@id": "{{FRONTEND_HOST}}"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About",
+                "item": {
+                    "@type": "AboutPage",
+                    "@id": "{{FRONTEND_HOST}}/about"
+                }
+            }
+        ]
+    }
+</script>
+
+{% endblock headermeta %}
+
+{% block innercontent %}
+<div class="container">
+    <div style="width:800px; margin:0 auto;">
+        <h1 class="about-title">Press Info</h1>
+
+        <div class="about-sub-title"></div>
+
+        <div class="entry-content about-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>You are welcome to contact CEO &amp; Founder of Biites Nina Nørgaard
+                        Jacobsen.</p>
+                    <p>Nina Nørgaard Jacobsen<br>
+                        <a style="font-size: 1rem" href="tel:+ 454264 5851">tlf. + 45 4264
+                            5851</a><br>
+                        <a href="mailto:nnj@biites.com">nnj@biites.com </a><br>
+                        LinkedIn: <a href="https://www.linkedin.com/in/ninanoergaardjacobsen/">in/ninanoergaardjacobsen</a>
+                    </p>
+                    <p>Please follow <a
+                            href="https://www.linkedin.com/company/biites-international/">Biites
+                        on LinkedIn</a> to get the latest news.</p>
+                    <p><a href="https://business.biites.com/about-biites/">About Biites</a><br>
+                        <a href="https://business.biites.com/faq/">Biites FAQ</a><br>
+                        <a href="https://biites.com/da/biites-pressebilleder/">Download press
+                            photos</a><br>
+                        <a href="https://www.dropbox.com/sh/1qpbc2g2tn31hu4/AABi56mSvLaU2pNNxVC0ObHna?dl=0">Download
+                            logos and the mediakit</a></p>
+                </div>
+                <div class="col-md-6">
+                    <picture class="alignnone size-medium wp-image-10328">
+                        <source type="image/webp"
+                                srcset="/static/images/biites-laptop.png 600w, /static/images/biites-laptop.png 300w"
+                                sizes="(max-width: 600px) 100vw, 600px">
+                        <img src="/static/images/biites-laptop.png" alt="" width="100%"
+                             srcset="/static/images/biites-laptop.png 600w, /static/images/biites-laptop.png 300w"
+                             sizes="(max-width: 600px) 100vw, 600px">
+                    </picture>
+                </div>
+                <p>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

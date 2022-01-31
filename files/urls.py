@@ -9,6 +9,11 @@ from .feeds import IndexRSSFeed, SearchRSSFeed
 urlpatterns = [
     re_path(r"^$", views.index),
     re_path(r"^about", views.about, name="about"),
+    re_path(r"^termsconditions", views.termsconditions, name="termsconditions"),
+    re_path(r"^ethicalguidelines", views.ethicalguidelines, name="ethicalguidelines"),
+    re_path(r"^press", views.press, name="press"),
+    re_path(r"^cookiesprivacy", views.cookiesprivacy, name="cookiesprivacy"),
+    re_path(r"^analytics", views.analytics, name="analytics"),
     re_path(r"^add_subtitle", views.add_subtitle, name="add_subtitle"),
     re_path(r"^categories$", views.categories, name="categories"),
     re_path(r"^contact$", views.contact, name="contact"),

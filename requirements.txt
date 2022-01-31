@@ -31,3 +31,9 @@ django-ckeditor
 django-debug-toolbar
 
 django-login-required-middleware==0.6.1
+
+boto3
+pyyaml 
+ua-parser 
+user-agents
+django-user-agents

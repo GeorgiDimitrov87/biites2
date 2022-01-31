@@ -65,6 +65,17 @@ from .serializers import (
 from .stop_words import STOP_WORDS
 from .tasks import save_user_action
 
+import json
+import boto3
+import os
+import requests
+import logging
+
+firehose = boto3.client('firehose',
+                        aws_access_key_id = "",
+                        aws_secret_access_key = "", 
+                        region_name='eu-central-1')
+
 VALID_USER_ACTIONS = [action for action, name in USER_MEDIA_ACTIONS]
 
 
@@ -74,13 +85,59 @@ def about(request):
     context = {}
     return render(request, "cms/about.html", context)
 
+def termsconditions(request):
+    context = {}
+    return render(request, "cms/termsconditions.html", context)
+
+def ethicalguidelines(request):
+    context = {}
+    return render(request, "cms/ethicalguidelines.html", context)
+
+def press(request):
+    context = {}
+    return render(request, "cms/press.html", context)
+
+def cookiesprivacy(request):
+    context = {}
+    return render(request, "cms/cookiesprivacy.html", context)
+
 def analytics(request):
     """Analytics view"""
-    # print('hello###########')
-    # print(request.body)
-    # print(request.text)
+    print('part2###########')
+    tracking = request.body
+    # friendly_token = tracking['url']
+    # x = friendly_token.split("/view?m=")
+    # xp = x[1]
+    # print(xp)
+
+    user_or_session = get_user_or_session(request)
+    test_data = user_or_session
+    tracking = json.loads(tracking)
+    try:
+        tracking['user_session'] = test_data['user_session']
+    except Exception as ex:
+            print(ex)
+            pass
+    try:
+        tracking['user_id'] = test_data['user_id']
+    except Exception as ex:
+            print(ex)
+            pass
+    
+    try:
+        last_data = json.dumps(tracking)
+        print(last_data)
+        last_data = last_data + ';'
+        res = firehose.put_record(
+        DeliveryStreamName="PUT-S3-B3",
+        Record = {'Data': last_data})
+        print("Wrote to RecordId: {}".format(res['RecordId']))
+    except Exception as ex:
+            print(ex)
+            pass
+
     context = {}
-    return render(request, "cms/about.html", context)
+    return render(request, "cms/media.html", context)
 
 @login_required
 def add_subtitle(request):
@@ -330,15 +387,68 @@ def upload_media(request):
 
 def view_media(request):
     """View media view"""
-
     friendly_token = request.GET.get("m", "").strip()
     context = {}
     media = Media.objects.filter(friendly_token=friendly_token).first()
     if not media:
         context["media"] = None
         return render(request, "cms/media.html", context)
-
     user_or_session = get_user_or_session(request)
+    # get uid from Media
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    test_data = user_or_session
+    try:
+        fruit = "https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_BL6MvS3QhbkhGnk5Zc81ZCQDOuU3L&ipAddress=%s" % (test_data['remote_ip_addr'])
+        address = requests.get(fruit)
+        adr = address.text
+        result = json.loads(adr)
+
+    except Exception as ex:
+            print(ex)
+            pass
+
+    try:
+        test_data['time'] = dt_string
+        test_data['title'] = str(media)
+        test_data['id_token'] = friendly_token
+        if result:
+            test_data['ip_addr'] = result['ip']
+            test_data['location'] = result['location']
+            test_data['proxy'] = result['proxy']
+        last_url = request.META.get('HTTP_REFERER')
+        user_agent = request.user_agent
+        browser = user_agent.browser.family
+        browser_version = user_agent.browser.version_string
+        os = user_agent.os.family
+        os_version = user_agent.os.version_string
+        is_pc = user_agent.is_pc
+        is_mobile = user_agent.is_mobile
+        test_data['browser'] = browser
+        test_data['browser_version'] = browser_version
+        test_data['os'] = os
+        test_data['os_version'] = os_version
+        test_data['is_pc'] = is_pc
+        test_data['is_mobile'] = is_mobile
+        test_data['last_url'] = last_url
+
+    except Exception as ex:
+            print(ex)
+            pass  
+    print('part1###########', test_data)
+
+    try:
+        last_data = json.dumps(test_data)
+        print(last_data)
+        last_data = last_data + ';'
+        res = firehose.put_record(
+        DeliveryStreamName="PUT-S3-B3",
+        Record = {'Data': last_data})
+        print("Wrote to RecordId: {}".format(res['RecordId']))
+    except Exception as ex:
+            print(ex)
+            pass
+
     save_user_action.delay(user_or_session, friendly_token=friendly_token, action="watch")
     context = {}
     context["media"] = friendly_token
@@ -347,6 +457,7 @@ def view_media(request):
     context["CAN_DELETE_MEDIA"] = False
     context["CAN_EDIT_MEDIA"] = False
     context["CAN_DELETE_COMMENTS"] = False
+    print('context', context)
 
     if request.user.is_authenticated:
         if (media.user.id == request.user.id) or is_mediacms_editor(request.user) or is_mediacms_manager(request.user):

@@ -117,6 +117,10 @@ def category_thumb_path(instance, filename):
 
 class Media(models.Model):
     """The most important model for MediaCMS"""
+    site = models.CharField(max_length=300, default='')
+    photo_id = models.CharField(max_length=30, default='')
+    ctatext = models.CharField(max_length=300, default='')
+    ctaurl = models.CharField(max_length=300, default='')
 
     add_date = models.DateTimeField("Date produced", blank=True, null=True, db_index=True)
 
