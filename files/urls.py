@@ -12,6 +12,7 @@ urlpatterns = [
     re_path(r"^termsconditions", views.termsconditions, name="termsconditions"),
     re_path(r"^ethicalguidelines", views.ethicalguidelines, name="ethicalguidelines"),
     re_path(r"^press", views.press, name="press"),
+    re_path(r"^carousel", views.carousel, name="carousel"),
     re_path(r"^cookiesprivacy", views.cookiesprivacy, name="cookiesprivacy"),
     re_path(r"^analytics", views.analytics, name="analytics"),
     re_path(r"^add_subtitle", views.add_subtitle, name="add_subtitle"),

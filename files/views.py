@@ -89,7 +89,10 @@ def ethicalguidelines(request):
     context = {}
     return render(request, "cms/ethicalguidelines.html", context)
 
-
+def carousel(request):
+    context = {}
+    return render(request, "cms/carousel.html", context)
+    
 def press(request):
     context = {}
     return render(request, "cms/press.html", context)

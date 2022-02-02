@@ -4,7 +4,7 @@
 
   @media (min-width: 768px) {
     .visible-sidebar & {
-      padding-left: var(--sidebar-width);
+      // padding-left: var(--sidebar-width);
       opacity: 1;
     }
   }

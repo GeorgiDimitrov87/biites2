@@ -30,6 +30,11 @@ export function HeaderLeft() {
                   </div>
                 ) : null}
                 <Logo src={logo} href={links.home} title={site.title} />
+                {/* <button style={{ color: "ffffff", background: "ffffff", text-decoration:none }}><a href="localhost/categories">TRENDING</a></button>
+                <button><a href="localhost/categories">CATEGORIES</a></button> */}
+                <a href="/recommended" style={{"text-decoration":"none"}}>TRENDING</a>
+                <a href="/categories"  style={{"text-decoration":"none"}}>CATEGORIES</a>
+
                 {PageStore.get('config-contents').header.onLogoRight ? (
                   <div
                     className="on-logo-right"

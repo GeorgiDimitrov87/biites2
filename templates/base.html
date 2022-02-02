@@ -3,7 +3,7 @@
 
 {% block beforecontent %}
 {% include "components/header.html" %}
-<!-- {% include "components/sidebar.html" %} -->
+{% include "components/sidebar.html" %}
 {% endblock %}
 
 {% block content %}
@@ -12,10 +12,6 @@
     {% block innercontent %}{% endblock innercontent %}
     </div>
     <div class="page-sidebar-content-overlay"></div>
-
-<!-- <a href="https://www.qries.com/" style="position: absolute;">
-    <img alt="Qries" src="/static/images/biites-laptop.png"
-        width=150" height="70"> -->
 </a>
 </div>
 {% endblock %}
