@@ -37,7 +37,6 @@ function headerPopupPages(user, popupNavItems, hasHeaderThemeSwitcher) {
 
     pages.main = (
       <div>
-        <a href="biites.com" style={{"text-decoration":"none"}}>Biites for Business</a>
         <PopupTop>
           <a className="user-menu-top-link" href={user.pages.about} title={user.username}>
             <span>
@@ -139,7 +138,7 @@ export function HeaderRight(props) {
                         <MaterialIcon type="search" />
                       </CircleIconButton>
                     </div>
-                    {/* <a href="business.biites.com"  style={{"text-decoration":"none"}}>Biites for Business</a> */}
+                    <a href="https://business.biites.com" style={{"text-decoration":"none", "color":"white"}}> Biites for Business </a>
                     <UploadMediaButton user={user} links={links} />
 
                     <div

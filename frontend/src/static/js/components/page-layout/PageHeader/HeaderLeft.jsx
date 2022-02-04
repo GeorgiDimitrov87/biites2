@@ -22,18 +22,18 @@ export function HeaderLeft() {
                     <i className="material-icons">arrow_back</i>
                   </CircleIconButton>
                 </div>
-                {enabledSidebar ? (
+                {/* {enabledSidebar ? (
                   <div className="toggle-sidebar">
                     <CircleIconButton onClick={toggleSidebar}>
                       <i className="material-icons">menu</i>
                     </CircleIconButton>
                   </div>
-                ) : null}
+                ) : null} */}
                 <Logo src={logo} href={links.home} title={site.title} />
                 {/* <button style={{ color: "ffffff", background: "ffffff", text-decoration:none }}><a href="localhost/categories">TRENDING</a></button>
                 <button><a href="localhost/categories">CATEGORIES</a></button> */}
-                <a href="/recommended" style={{"text-decoration":"none"}}>TRENDING</a>
-                <a href="/categories"  style={{"text-decoration":"none"}}>CATEGORIES</a>
+                <a href="/recommended" style={{"text-decoration":"none", "color":"white"}}>Trending</a>
+                <a href="/categories"  style={{"text-decoration":"none", "color":"white"}}>Categories</a>
 
                 {PageStore.get('config-contents').header.onLogoRight ? (
                   <div

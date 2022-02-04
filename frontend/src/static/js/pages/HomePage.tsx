@@ -6,13 +6,19 @@ import { MediaMultiListWrapper } from '../components/MediaMultiListWrapper';
 import { ItemListAsync } from '../components/item-list/ItemListAsync.jsx';
 import { InlineSliderItemListAsync } from '../components/item-list/InlineSliderItemListAsync.jsx';
 import { Page } from './Page';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+// import HomeSlider from "../components/slider/Slider.jsx";
+// import Slider from 'react-animated-slider';
+// import horizontalCss from 'react-animated-slider/build/horizontal.css';
+
 
 const EmptyMedia: React.FC = ({}) => {
   return (
     <LinksConsumer>
       {(links) => (
         <div className="empty-media">
-          <div className="welcome-title">Welcome to MediaCMS!</div>
+          <div className="welcome-title">Welcome to Biites!</div>
           <div className="start-uploading">Start uploading media and sharing your work!</div>
           <a href={links.user.addMedia} title="Upload media" className="button-link">
             <i className="material-icons" data-icon="video_call"></i>UPLOAD MEDIA
@@ -60,8 +66,41 @@ export const HomePage: React.FC<HomePageProps> = ({
     setVisibleRecommended(0 < length);
   };
 
+  // const content = [
+  //   {
+  //     title: 'Vulputate Mollis Ultricies Fermentum Parturient',
+  //     description:
+  //     'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.',
+  //     button: 'Read More',
+  //     image: 'https://i.imgur.com/ZXBtVw7.jpg',
+  //     user: 'Luan Gjokaj',
+  //     userProfile: 'https://i.imgur.com/JSW6mEk.png'
+  //   },
+  //   {
+  //     title: 'Tortor Dapibus Commodo Aenean Quam',
+  //     description:
+  //     'Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.',
+  //     button: 'Discover',
+  //     image: 'https://i.imgur.com/DCdBXcq.jpg',
+  //     user: 'Erich Behrens',
+  //     userProfile: 'https://i.imgur.com/0Clfnu7.png'
+  //   },
+  //   {
+  //     title: 'Phasellus volutpat metus',
+  //     description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
+  //     button: 'Buy now',
+  //     image: 'https://i.imgur.com/DvmN8Hx.jpg',
+  //     user: 'Bruno Vizovskyy',
+  //     userProfile: 'https://i.imgur.com/4KeKvtH.png'
+  //   }
+  // ];
+  
+
   return (
     <Page id={id}>
+      {/* <h2>Hello</h2> */}
+      <div><img src="/static/images/testpic.jpg" style={{"width":"100%", "height": "85%"}} ></img></div>
       <LinksConsumer>
         {(links) => (
           <ApiUrlConsumer>
