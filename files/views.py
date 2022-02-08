@@ -106,6 +106,7 @@ def cookiesprivacy(request):
 def analytics(request):
     """Analytics view"""
     print('part2###########')
+    print('hello')
     tracking = request.body
     # friendly_token = tracking['url']
     # x = friendly_token.split("/view?m=")
@@ -113,6 +114,10 @@ def analytics(request):
     # print(xp)
 
     user_or_session = get_user_or_session(request)
+    print(request.body)
+    friendly_token = request.GET.get("m", "").strip()
+    print(friendly_token)
+    print('hello2')
     test_data = user_or_session
     tracking = json.loads(tracking)
     try:
