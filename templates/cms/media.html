@@ -134,7 +134,8 @@ function log(name, data) {
     // var token = JSON.parse("{{media_object}}");
     var token = "{{media_object.friendly_token}}";
     const json = {
-        [token]: {
+        biites : {
+            video_id: token,
             date: currentTime,
             [name]: data,
         },

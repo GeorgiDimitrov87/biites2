@@ -296,6 +296,7 @@ INSTALLED_APPS = [
     "djcelery_email",
     "ckeditor",
     "drf_yasg",
+    "django_user_agents",
 ]
 
 MIDDLEWARE = [
@@ -307,6 +308,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django_user_agents.middleware.UserAgentMiddleware",
 ]
 
 ROOT_URLCONF = "cms.urls"

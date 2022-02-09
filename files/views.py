@@ -106,18 +106,8 @@ def cookiesprivacy(request):
 def analytics(request):
     """Analytics view"""
     print('part2###########')
-    print('hello')
     tracking = request.body
-    # friendly_token = tracking['url']
-    # x = friendly_token.split("/view?m=")
-    # xp = x[1]
-    # print(xp)
-
     user_or_session = get_user_or_session(request)
-    print(request.body)
-    friendly_token = request.GET.get("m", "").strip()
-    print(friendly_token)
-    print('hello2')
     test_data = user_or_session
     tracking = json.loads(tracking)
     try:
@@ -409,6 +399,10 @@ def view_media(request):
         address = requests.get(fruit)
         adr = address.text
         result = json.loads(adr)
+        if result:
+            test_data['ip_addr'] = result['ip']
+            test_data['location'] = result['location']
+            test_data['proxy'] = result['proxy']
 
     except Exception as ex:
         print(ex)
@@ -418,10 +412,6 @@ def view_media(request):
         test_data['time'] = dt_string
         test_data['title'] = str(media)
         test_data['id_token'] = friendly_token
-        if result:
-            test_data['ip_addr'] = result['ip']
-            test_data['location'] = result['location']
-            test_data['proxy'] = result['proxy']
         last_url = request.META.get('HTTP_REFERER')
         user_agent = request.user_agent
         browser = user_agent.browser.family
