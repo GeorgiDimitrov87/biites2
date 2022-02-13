@@ -68,7 +68,7 @@ from .serializers import (
 from .stop_words import STOP_WORDS
 from .tasks import save_user_action
 
-firehose = boto3.client('firehose', aws_access_key_id="AKIA2BSWVPNXVBZHEBVJ", aws_secret_access_key="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", region_name='eu-central-1')
+firehose = boto3.client('firehose', aws_access_key_id="", aws_secret_access_key="", region_name='eu-central-1')
 
 VALID_USER_ACTIONS = [action for action, name in USER_MEDIA_ACTIONS]
 

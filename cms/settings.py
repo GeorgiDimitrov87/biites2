@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
 }
 
 
-SECRET_KEY = "2dii4cog7k=5n37$fz)8dst)kg(s3&10)^qa*gv(kk+nv-z&cu"
+SECRET_KEY = "xxx"
 # TODO: this needs to be changed!
 
 TEMP_DIRECTORY = "/tmp"  # Don't use a temp directory inside BASE_DIR!!!
