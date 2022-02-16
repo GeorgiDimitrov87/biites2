@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Swiper as DefaultSwiper, SwiperProps } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-import styles from "./swiper.module.css";
+import styles from "./Swiper.module.scss";
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { children, className, ...rest } = props;
