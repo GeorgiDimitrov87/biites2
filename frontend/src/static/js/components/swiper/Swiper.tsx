@@ -1,18 +1,18 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Swiper as DefaultSwiper, SwiperProps } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-import styles from "./swiper.module.css";
+import "./swiper.css";
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { children, className, ...rest } = props;
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const classes = [styles.swiper, className].join(" ");
+  const classes = ["swiper", className].join(" ");
 
   return (
     <DefaultSwiper
@@ -31,16 +31,20 @@ const Swiper: React.FC<SwiperProps> = (props) => {
         nextEl: nextRef.current
       }}
       onBeforeInit={(swiper) => {
-        swiper.params.navigation.prevEl = prevRef.current;
-        swiper.params.navigation.nextEl = nextRef.current;
+        swiper.params.navigation = {
+          prevEl: prevRef.current,
+          nextEl: nextRef.current
+        };
+//         swiper?.params?.navigation?.prevEl = prevRef.current;
+//         swiper?.params?.navigation?.nextEl = nextRef.current;
       }}
       spaceBetween={10}
       {...rest}
     >
       {children}
-      <div className={styles.nav_container}>
-        <div ref={prevRef} className={styles.nav_btn} />
-        <div ref={nextRef} className={styles.nav_btn} />
+      <div className={"swiper_nav_container"}>
+        <div ref={prevRef} className={"swiper_nav_btn"} />
+        <div ref={nextRef} className={"swiper_nav_btn"} />
       </div>
     </DefaultSwiper>
   );
