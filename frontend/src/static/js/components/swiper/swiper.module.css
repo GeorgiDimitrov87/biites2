@@ -1,0 +1,27 @@
+.swiper {
+  position: relative;
+}
+
+.nav_container {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  justify-content: space-between;
+}
+
+.nav_btn {
+  z-index: 10;
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.slide {
+  /* transition: transform 0.3s ease-in-out; */
+  /* transform: scale(0.92); */
+}
+
+.slide:hover {
+  /* transform: scale(1.1); */
+}

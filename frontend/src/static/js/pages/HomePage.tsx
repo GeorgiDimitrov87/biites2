@@ -8,10 +8,62 @@ import { InlineSliderItemListAsync } from '../components/item-list/InlineSliderI
 import { Page } from './Page';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Swiper, Slide } from "../components/swiper";
 // import HomeSlider from "../components/slider/Slider.jsx";
 // import Slider from 'react-animated-slider';
 // import horizontalCss from 'react-animated-slider/build/horizontal.css';
 
+const images = Array.from({ length: 20 }, (_, index) => {
+  return "https://picsum.photos/seed/" + index + 1 + "/1200/600";
+});
+
+interface SlideExampleProps {
+  url: string;
+  index: number;
+}
+const SlideExample: React.FC<SlideExampleProps> = (props) => {
+  const { url, index } = props;
+  return (
+    <div
+      style={{
+        position: "relative",
+        maxHeight: 600
+      }}
+    >
+      <img
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover"
+        }}
+        alt=""
+        src={url}
+      />
+      <div
+        style={{
+          top: "10%",
+          left: "10%",
+          position: "absolute",
+          color: "#fff"
+        }}
+      >
+        <h1>image {index + 1}</h1>
+        <a
+          href={url}
+          style={{
+            display: "block",
+            width: 70,
+            height: 70,
+            backgroundColor: "pink",
+            borderRadius: "50%"
+          }}
+        >
+          {""}
+        </a>
+      </div>
+    </div>
+  );
+};
 
 const EmptyMedia: React.FC = ({}) => {
   return (
@@ -100,6 +152,15 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <Page id={id}>
       {/* <h2>Hello</h2> */}
+      <Swiper slidesPerView={1}>
+      {images.map((image, index) => {
+        return (
+          <Slide key={image}>
+            <SlideExample index={index} url={image} />
+          </Slide>
+        );
+      })}
+    </Swiper>
       <div><img src="/static/images/testpic.jpg" style={{"width":"100%", "height": "85%"}} ></img></div>
       <LinksConsumer>
         {(links) => (
