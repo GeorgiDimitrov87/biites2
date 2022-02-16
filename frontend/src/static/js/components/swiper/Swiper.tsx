@@ -31,8 +31,8 @@ const Swiper: React.FC<SwiperProps> = (props) => {
         nextEl: nextRef.current
       }}
       onBeforeInit={(swiper) => {
-        swiper.params.navigation.prevEl = prevRef.current;
-        swiper.params.navigation.nextEl = nextRef.current;
+        swiper?.params?.navigation?.prevEl = prevRef.current;
+        swiper?.params?.navigation?.nextEl = nextRef.current;
       }}
       spaceBetween={10}
       {...rest}
