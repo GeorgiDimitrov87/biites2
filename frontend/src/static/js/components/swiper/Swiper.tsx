@@ -5,14 +5,14 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import styles from "./Swiper.module.scss";
+import "./swiper.css";
 
 const Swiper: React.FC<SwiperProps> = (props) => {
   const { children, className, ...rest } = props;
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const classes = [styles.swiper, className].join(" ");
+  const classes = ["swiper", className].join(" ");
 
   return (
     <DefaultSwiper
