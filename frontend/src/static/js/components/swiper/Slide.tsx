@@ -1,7 +1,7 @@
 import Reac from 'react';
 import { SwiperSlide, SwiperSlideProps } from "swiper/react";
 
-import styles from "./swiper.module.css";
+import styles from "./Swiper.module.scss";
 
 const Slide: React.FC<SwiperSlideProps> = (props) => {
   const { className, ...rest } = props;
