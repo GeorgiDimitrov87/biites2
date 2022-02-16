@@ -38,9 +38,9 @@ const Swiper: React.FC<SwiperProps> = (props) => {
       {...rest}
     >
       {children}
-      <div className={styles.nav_container}>
-        <div ref={prevRef} className={styles.nav_btn} />
-        <div ref={nextRef} className={styles.nav_btn} />
+      <div className={"swiper_nav_container"}>
+        <div ref={prevRef} className={"swiper_nav_btn"} />
+        <div ref={nextRef} className={"swiper_nav_btn"} />
       </div>
     </DefaultSwiper>
   );
