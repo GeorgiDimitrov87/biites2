@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.nav_container {
+.swiper_nav_container {
   position: absolute;
   display: flex;
   height: 100%;
@@ -11,7 +11,7 @@
   justify-content: space-between;
 }
 
-.nav_btn {
+.swiper_nav_btn {
   z-index: 10;
   width: 50px;
   background-color: rgba(0, 0, 0, 0.3);

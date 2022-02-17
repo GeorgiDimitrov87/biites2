@@ -27,7 +27,9 @@ const SlideExample: React.FC<SlideExampleProps> = (props) => {
     <div
       style={{
         position: "relative",
-        maxHeight: 600
+        maxHeight: 600,
+        maxWidth:'100%,
+        overflow:'hidden'
       }}
     >
       <img
